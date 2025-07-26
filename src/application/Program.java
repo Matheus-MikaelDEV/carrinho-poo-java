@@ -22,7 +22,7 @@ public class Program {
         Sistema sistema = new Sistema();
 
         do {
-            System.out.println("\nMenu:\n1 - Adicionar Produto\n2 - Remover Produto\n3 - Listar Produtos\n4 - Sair");
+            System.out.println("\nMenu:\n1 - Adicionar Produto\n2 - Remover Produto\n3 - Listar Produtos\n4 - Valor Total\n5 - Nota Fiscal\n6 - Sair");
             System.out.print("Opção: ");
             opcao = sc.nextInt();
             sc.nextLine();
@@ -79,11 +79,25 @@ public class Program {
                     }
                     break;
                 case 4:
-                    System.out.println("Saindo...");
+                    if (sistema.verTotalNoCarrinho()){
+                        System.out.print("Valor total do carrinho: R$" + sistema.getTotalPrice());
+                    } else {
+                        System.out.print("Falha ao listar o valor total do seu carrinho!");
+                    }
+                    break;
+                case 5:
+                    if (sistema.notaFiscal()){
+                        System.out.print("Nota fiscal gerada com sucesso!");
+                    } else {
+                        System.out.print("Falha ao gerar a nota fiscal!");
+                    }
+                    break;
+                case 6:
+                    System.out.print("Saindo...");
                     break;
                 default:
                     System.out.println("Tente novamente...");
             }
-        } while (opcao != 4);
+        } while (opcao != 6);
     }
 }
